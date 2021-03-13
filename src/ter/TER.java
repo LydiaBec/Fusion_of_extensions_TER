@@ -77,6 +77,10 @@ public class TER {
 		Vector<String> argument = new Vector<String>();
 		Vector<String> model = new Vector<String>();
 		Vector<String[]> atts = new Vector<String[]>();
+		Vector<DungAF> afs = new Vector<DungAF>();
+	//Reading model
+		Models mod = new Models(model);
+		readingModels(model, ".\\modeles.txt");
 	//Reading Af's files and calculate the distances
 		File dir = new File(".\\Afs");
 		File[] liste = dir.listFiles();
@@ -85,17 +89,31 @@ public class TER {
 				for (int i = 1; i < liste.length - 1; i++) {
 					System.out.format("****************File: %s%n", item.getName() + "****************");
 					readingAF(argument, atts, ".\\Afs\\" + item.getName());
-					readingModels(model, ".\\modeles.txt");
+					//Création de l'af
 					DungAF af = new DungAF(argument, atts);
-					Models mod = new Models(model);
-					DistanceHamming dm = new DistanceHamming();
-					CalculDistance.calculDistance(af, mod, dm);
-					System.out.println("Distances vector of the extension of " + item.getName()
-							+ " with all the models: " + mod.getDistance());
+					//ajout de l'af a l'ensemble des afs
+					afs.add(af);
+					
+					
 				}
 			}
 
 		}
+		//calcul de la distance
+		DistanceHamming dm = new DistanceHamming();
+		//iterateur pour parcourir l'ensemble des afs
+		Iterator<DungAF> iterator_af = afs.iterator();
+        	while(iterator_af.hasNext()){
+			//System.out.println(iterator_af.next().getArguments());
+			//calcul de la distance
+			CalculDistance.calculDistance(iterator_af.next(), mod, dl);
+			//affichange de la distance
+			System.out.println("Distances vector of the extension of " + item.getName()
+				+ " with all the models: " + mod.getDistance());
+        	}
+		
+		
+		
 
 	}
 }
