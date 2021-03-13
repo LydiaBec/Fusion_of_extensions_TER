@@ -9,7 +9,6 @@ import java.util.Vector;
 import net.sf.jargsemsat.jargsemsat.datastructures.*;
 
 public class TER {
-
 	public static void readingAF(Vector<String> argument, Vector<String[]> atts, String af_file) {
 		argument.clear();
 		atts.clear();
@@ -81,7 +80,7 @@ public class TER {
 	//Reading model
 		Models mod = new Models(model);
 		readingModels(model, ".\\modeles.txt");
-	//Reading Af's files and calculate the distances
+	//Reading Af's files
 		File dir = new File(".\\Afs");
 		File[] liste = dir.listFiles();
 		for (File item : liste) {
@@ -92,9 +91,7 @@ public class TER {
 					//Création de l'af
 					DungAF af = new DungAF(argument, atts);
 					//ajout de l'af a l'ensemble des afs
-					afs.add(af);
-					
-					
+					afs.add(af);	
 				}
 			}
 
@@ -104,7 +101,6 @@ public class TER {
 		//iterateur pour parcourir l'ensemble des afs
 		Iterator<DungAF> iterator_af = afs.iterator();
         	while(iterator_af.hasNext()){
-			//System.out.println(iterator_af.next().getArguments());
 			//calcul de la distance
 			CalculDistance.calculDistance(iterator_af.next(), mod, dl);
 			//affichange de la distance
