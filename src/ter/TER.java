@@ -14,7 +14,7 @@ public class TER {
 		argument.clear();
 		atts.clear();
 		String file_arguments = new String();// tableau pour stocker les argument du fichier
-		String link = new String(af_file);// chemin vers le fichier � lire
+		String link = new String(af_file);// chemin vers le fichier à lire
 		String[] splited = new String[2];
 		Boolean attaque = false;
 		BufferedReader reader;
@@ -50,7 +50,7 @@ public class TER {
 
 	public static void readingModels(Vector<String> models, String af_file) {
 		models.clear();
-		String file_model = new String();// Pour stocker les mod�les 
+		String file_model = new String();// Pour stocker les modèles 
 		String link = new String(af_file);// path to the file to read
 		BufferedReader reader;
 
