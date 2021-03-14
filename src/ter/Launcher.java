@@ -8,7 +8,7 @@ import java.util.Vector;
 
 import net.sf.jargsemsat.jargsemsat.datastructures.*;
 
-public class TER {
+public class Launcher {
 	public static void readingAF(Vector<String> argument, Vector<String[]> atts, String af_file) {
 		argument.clear();
 		atts.clear();
@@ -77,6 +77,7 @@ public class TER {
 		Vector<String> model = new Vector<String>();
 		Vector<String[]> atts = new Vector<String[]>();
 		Vector<DungAF> afs = new Vector<DungAF>();
+		int j=0;
 	//Reading model
 		Models mod = new Models(model);
 		readingModels(model, ".\\modeles.txt");
@@ -86,7 +87,6 @@ public class TER {
 		for (File item : liste) {
 			if (item.isFile()) {
 				for (int i = 1; i < liste.length - 1; i++) {
-					System.out.format("****************File: %s%n", item.getName() + "****************");
 					readingAF(argument, atts, ".\\Afs\\" + item.getName());
 					//Création de l'af
 					DungAF af = new DungAF(argument, atts);
@@ -101,10 +101,13 @@ public class TER {
 		//iterateur pour parcourir l'ensemble des afs
 		Iterator<DungAF> iterator_af = afs.iterator();
         	while(iterator_af.hasNext()){
+			j++;
+		System.out.format("****************File:AF"+j+".tgf****************");
+
 			//calcul de la distance
 			CalculDistance.calculDistance(iterator_af.next(), mod, dl);
 			//affichange de la distance
-			System.out.println("Distances vector of the extension of " + item.getName()
+			System.out.println("Distances vector of the extension of AF" +j
 				+ " with all the models: " + mod.getDistance());
         	}
 		
