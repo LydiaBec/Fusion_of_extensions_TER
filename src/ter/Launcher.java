@@ -105,7 +105,7 @@ public class Launcher {
 		System.out.format("****************File:AF"+j+".tgf****************");
 
 			//calcul de la distance
-			CalculDistance.calculDistance(iterator_af.next(), mod, dl);
+			CalculDistance.calculDistance(iterator_af.next(), mod, dm);
 			//affichange de la distance
 			System.out.println("Distances vector of the extension of AF" +j
 				+ " with all the models: " + mod.getDistance());
