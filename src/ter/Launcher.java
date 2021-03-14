@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Iterator;
 import java.util.Vector;
-
 import net.sf.jargsemsat.jargsemsat.datastructures.*;
 
 public class Launcher {
