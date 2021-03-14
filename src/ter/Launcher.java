@@ -3,9 +3,8 @@ package ter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-
+import java.util.Iterator;
 import java.util.Vector;
-
 import net.sf.jargsemsat.jargsemsat.datastructures.*;
 
 public class Launcher {
@@ -49,7 +48,7 @@ public class Launcher {
 
 	public static void readingModels(Vector<String> models, String af_file) {
 		models.clear();
-		String file_model = new String();// Pour stocker les modèles 
+		String file_model = new String();// Pour stocker les modèles
 		String link = new String(af_file);// path to the file to read
 		BufferedReader reader;
 
@@ -77,42 +76,39 @@ public class Launcher {
 		Vector<String> model = new Vector<String>();
 		Vector<String[]> atts = new Vector<String[]>();
 		Vector<DungAF> afs = new Vector<DungAF>();
-		int j=0;
-	//Reading model
+		String newligne = System.getProperty("line.separator");
+		int j = 0;
+		// Reading model
 		Models mod = new Models(model);
 		readingModels(model, ".\\modeles.txt");
-	//Reading Af's files
+		// Reading Af's files
 		File dir = new File(".\\Afs");
 		File[] liste = dir.listFiles();
 		for (File item : liste) {
 			if (item.isFile()) {
 				for (int i = 1; i < liste.length - 1; i++) {
 					readingAF(argument, atts, ".\\Afs\\" + item.getName());
-					//Création de l'af
+					// Création de l'af
 					DungAF af = new DungAF(argument, atts);
-					//ajout de l'af a l'ensemble des afs
-					afs.add(af);	
+					// ajout de l'af a l'ensemble des afs
+					afs.add(af);
 				}
 			}
 
 		}
-		//calcul de la distance
+		// calcul de la distance
 		DistanceHamming dm = new DistanceHamming();
-		//iterateur pour parcourir l'ensemble des afs
+		// iterateur pour parcourir l'ensemble des afs
 		Iterator<DungAF> iterator_af = afs.iterator();
-        	while(iterator_af.hasNext()){
+		while (iterator_af.hasNext()) {
 			j++;
-		System.out.format("****************File:AF"+j+".tgf****************");
-
-			//calcul de la distance
+			System.out.format("****************File:AF" + j + ".tgf****************" + newligne);
+			// calcul de la distance
 			CalculDistance.calculDistance(iterator_af.next(), mod, dm);
-			//affichange de la distance
-			System.out.println("Distances vector of the extension of AF" +j
-				+ " with all the models: " + mod.getDistance());
-        	}
-		
-		
-		
+			// affichange de la distance
+			System.out.println(
+					"Distances vector of the extension of AF" + j + " with all the models: " + mod.getDistance());
+		}
 
 	}
 }
