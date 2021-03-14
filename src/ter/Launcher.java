@@ -3,18 +3,17 @@ package ter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-
+import java.util.Iterator;
 import java.util.Vector;
 
 import net.sf.jargsemsat.jargsemsat.datastructures.*;
 
-public class TER {
-
+public class Launcher {
 	public static void readingAF(Vector<String> argument, Vector<String[]> atts, String af_file) {
 		argument.clear();
 		atts.clear();
 		String file_arguments = new String();// tableau pour stocker les argument du fichier
-		String link = new String(af_file);// chemin vers le fichier � lire
+		String link = new String(af_file);// chemin vers le fichier à lire
 		String[] splited = new String[2];
 		Boolean attaque = false;
 		BufferedReader reader;
@@ -50,7 +49,7 @@ public class TER {
 
 	public static void readingModels(Vector<String> models, String af_file) {
 		models.clear();
-		String file_model = new String();// Pour stocker les mod�les 
+		String file_model = new String();// Pour stocker les modèles
 		String link = new String(af_file);// path to the file to read
 		BufferedReader reader;
 
@@ -77,24 +76,39 @@ public class TER {
 		Vector<String> argument = new Vector<String>();
 		Vector<String> model = new Vector<String>();
 		Vector<String[]> atts = new Vector<String[]>();
-	//Reading Af's files and calculate the distances
+		Vector<DungAF> afs = new Vector<DungAF>();
+		String newligne = System.getProperty("line.separator");
+		int j = 0;
+		// Reading model
+		Models mod = new Models(model);
+		readingModels(model, ".\\modeles.txt");
+		// Reading Af's files
 		File dir = new File(".\\Afs");
 		File[] liste = dir.listFiles();
 		for (File item : liste) {
 			if (item.isFile()) {
 				for (int i = 1; i < liste.length - 1; i++) {
-					System.out.format("****************File: %s%n", item.getName() + "****************");
 					readingAF(argument, atts, ".\\Afs\\" + item.getName());
-					readingModels(model, ".\\modeles.txt");
+					// Création de l'af
 					DungAF af = new DungAF(argument, atts);
-					Models mod = new Models(model);
-					DistanceHamming dm = new DistanceHamming();
-					CalculDistance.calculDistance(af, mod, dm);
-					System.out.println("Distances vector of the extension of " + item.getName()
-							+ " with all the models: " + mod.getDistance());
+					// ajout de l'af a l'ensemble des afs
+					afs.add(af);
 				}
 			}
 
+		}
+		// calcul de la distance
+		DistanceHamming dm = new DistanceHamming();
+		// iterateur pour parcourir l'ensemble des afs
+		Iterator<DungAF> iterator_af = afs.iterator();
+		while (iterator_af.hasNext()) {
+			j++;
+			System.out.format("****************File:AF" + j + ".tgf****************" + newligne);
+			// calcul de la distance
+			CalculDistance.calculDistance(iterator_af.next(), mod, dm);
+			// affichange de la distance
+			System.out.println(
+					"Distances vector of the extension of AF" + j + " with all the models: " + mod.getDistance());
 		}
 
 	}
