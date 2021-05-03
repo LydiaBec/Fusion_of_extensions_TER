@@ -16,7 +16,6 @@ public class Launcher {
 	static Collection<Collection<String>> vec_candidats = new Vector<>();
 
 	public static void main(String args[]) throws IOException {
-		long tempsDebut = System.nanoTime(); 
 
 		List<String> args_d = null;
 		if (args.length != 4) {
@@ -28,7 +27,7 @@ public class Launcher {
 					"\taggregation_function: SUM for sum, MIN for Minimum, MAX for Maximum, MUL for Multiplication, MEAN for mean,"
 							+ " MED for Mediane, LMIN for LexiMin, LMAX for LexiMax.");
 			System.out.println(
-					"Par défaut les paramètre utilisés sont : <af_path> = Afs, <constrain_path> = Sat.txt, <distance> = HM, <aggregation_function> = SUM ");
+					"Par dÃ©faut les paramÃ¨tre utilisÃ©s sont : <af_path> = Afs, <constrain_path> = Sat.txt, <distance> = HM, <aggregation_function> = SUM ");
 			args_d = Arrays.asList("Afs", "Sat.txt", "HM", "SUM");
 		} else
 			args_d = Arrays.asList(args);
@@ -85,7 +84,8 @@ public class Launcher {
 			System.err.println("Error Agregation function \"" + args_d.get(3) + "\" not handled");
 			return;
 		}
-
+		//Calcul temps d'execussion
+		long tempsDebut = System.nanoTime(); 
 		// Reading model
 		Collection<Collection<String>> model = ReadingFiles
 				.transformeModeles(ReadingFiles.readingConstrainte(args_d.get(1)));
@@ -141,7 +141,7 @@ public class Launcher {
 				resultat = as.choosenAggregate(mod);
 				System.out.println("Distance final apres aggregation = " + resultat);
 				vec_candidats = mod.getCondidats(resultat);
-				System.out.println("Le(s) candidat(s) selectioné(s) est(sont) : " + vec_candidats);
+				System.out.println("Le(s) candidat(s) selectionÃ©(s) est(sont) : " + vec_candidats);
 
 			} else {
 				System.err.println("Interruped process file extension not supported ");
@@ -152,7 +152,7 @@ public class Launcher {
 		long tempsFin = System.nanoTime(); 
 		double seconds = (tempsFin - tempsDebut) / 1e9; 
 		System.out.println();
-		System.out.println("Pour "+ args_d.get(0)+" Arguments Opération effectuée en: "+ seconds + " secondes.");
+		System.out.println("Pour "+ args_d.get(0)+" Arguments OpÃ©ration effectuÃ©e en: "+ seconds + " secondes.");
 	}
 	
 }
