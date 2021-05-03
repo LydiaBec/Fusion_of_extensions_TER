@@ -1,0 +1,112 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Example",
+            "request": "launch",
+            "mainClass": "fusion.Example",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch Launcher",
+            "request": "launch",
+            "mainClass": "fusion.Launcher",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch ProboMain",
+            "request": "launch",
+            "mainClass": "net.sf.jargsemsat.jargsemsat.alg.ProboMain",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch AnalysisTest",
+            "request": "launch",
+            "mainClass": "net.sf.tweety.arg.dung.test.AnalysisTest",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch CF2Test",
+            "request": "launch",
+            "mainClass": "net.sf.tweety.arg.dung.test.CF2Test",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch DivisionTest",
+            "request": "launch",
+            "mainClass": "net.sf.tweety.arg.dung.test.DivisionTest",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch LdoTest",
+            "request": "launch",
+            "mainClass": "net.sf.tweety.arg.dung.test.LdoTest",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch SccCompleteReasonerTest",
+            "request": "launch",
+            "mainClass": "net.sf.tweety.arg.dung.test.SccCompleteReasonerTest",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch StratifiedLabelingTest",
+            "request": "launch",
+            "mainClass": "net.sf.tweety.arg.dung.test.StratifiedLabelingTest",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch StratifiedLabelingsCli",
+            "request": "launch",
+            "mainClass": "net.sf.tweety.arg.dung.test.StratifiedLabelingsCli",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch BasicLauncher",
+            "request": "launch",
+            "mainClass": "org.sat4j.BasicLauncher",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch LightFactory",
+            "request": "launch",
+            "mainClass": "org.sat4j.LightFactory",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch MUSLauncher",
+            "request": "launch",
+            "mainClass": "org.sat4j.MUSLauncher",
+            "projectName": "TER"
+        },
+        {
+            "type": "java",
+            "name": "Launch MoreThanSAT",
+            "request": "launch",
+            "mainClass": "org.sat4j.MoreThanSAT",
+            "projectName": "TER"
+        }
+    ]
+}
