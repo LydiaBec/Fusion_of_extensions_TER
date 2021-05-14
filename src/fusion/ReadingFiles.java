@@ -38,12 +38,13 @@ public abstract class ReadingFiles {
 		}
 		return "\n" + chaine + "0";
 	}
-
+	//Function for reading the Afs
 	public static void readingAF(Vector<String> argument, Vector<String[]> atts, String af_file) {
 		argument.clear();
 		atts.clear();
-		String file_arguments = new String();// tableau pour stocker les argument du fichier
-		String link = new String(af_file);// chemin vers le fichier Ã  lire
+		String file_arguments = new String();
+		//path to the file to be read
+		String link = new String(af_file);
 		String[] splited = new String[2];
 		Boolean attaque = false;
 		BufferedReader reader;
@@ -102,7 +103,7 @@ public abstract class ReadingFiles {
 		String line = null;
 		int nb_clause;
 		try {
-			// LECTURE du fichier pour remplacer le nombre de clause
+			// Reading the file to replace the number of clauses
 			File f1 = new File(cnf_file);
 			FileReader fr = new FileReader(f1);
 			BufferedReader br = new BufferedReader(fr);
@@ -117,7 +118,7 @@ public abstract class ReadingFiles {
 			}
 			fr.close();
 			br.close();
-			// ECRITURE de la nouvelle clause
+			// Writing the new clause
 			FileWriter fw = new FileWriter(f1);
 			BufferedWriter bw = new BufferedWriter(fw);
 			for (String s : lines)
@@ -132,7 +133,7 @@ public abstract class ReadingFiles {
 			ex.printStackTrace();
 		}
 	}
-
+	//Function for reading Constraint
 	public static Vector<int[]> readingConstrainte(String cnf_file) throws IOException {
 		String cnf_use_file = "Sat_run.txt";
 		copyOfFile(cnf_file, cnf_use_file);
@@ -190,7 +191,7 @@ public abstract class ReadingFiles {
 		return chaine + "]";
 	}
 
-	// lire tous les fichier afs dans notre dossier
+	// read all afs files in our folder
 	public static Vector<DungAF> Lectures(String af_folder) {
 		Vector<String> argument = new Vector<String>();
 		Vector<String[]> atts = new Vector<String[]>();
@@ -201,15 +202,15 @@ public abstract class ReadingFiles {
 		for (File item : liste) {
 			if (item.isFile()) {
 				readingAF(argument, atts, item.getAbsolutePath());
-				// Création de l'af
+				// Cr&ate de l'af
 				DungAF af = new DungAF(argument, atts);
-				// ajout de l'af a l'ensemble des afs
+				// add the Af to the set of Afs
 				afs.add(af);
 			}
 		}
 		return afs;
 	}
-//Recuperer les nom des fichiers 
+	//Retrieve file names 
 	public static Vector<String> nameFile(String af_folder) {
 		Vector<String> listFile = new Vector<String>();
 		String it = new String();
