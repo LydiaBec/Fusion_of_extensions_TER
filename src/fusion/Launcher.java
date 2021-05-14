@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Vector;
 
@@ -149,7 +150,7 @@ public class Launcher {
                                     System.err.println("file extension not supported : " + fileName.get(j).toString()
                                                 + "\nsupported extentions: .co for complet, .pr for preferred, gr for grounded, st for stable ");
                                     supported = false;
-                                    break;
+                                    return;
                                 }
                             }
                         }
@@ -177,4 +178,4 @@ public class Launcher {
 		
 	}
 	
-}
+
