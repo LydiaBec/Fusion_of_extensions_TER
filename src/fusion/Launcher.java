@@ -29,7 +29,7 @@ public class Launcher {
 							+ " MED for Mediane, LMIN for LexiMin, LMAX for LexiMax.");
 			System.out.println(
 					"The default parameters used are : <af_path> = Afs, <constrain_path> = constraint.txt, <distance> = HM, <aggregation_function> = SUM ");
-			args_d = Arrays.asList("Afs", "Sat.txt", "HM", "SUM");
+			args_d = Arrays.asList("Afs", "constraint.txt", "HM", "SUM");
 		} else
 			args_d = Arrays.asList(args);
 
