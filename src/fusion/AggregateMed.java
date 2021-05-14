@@ -2,12 +2,9 @@ package fusion;
 
 import java.util.Collections;
 import java.util.Vector;
-
+//Median aggregation function
 public class AggregateMed extends Aggregate_Function {
 
-
-
-	// Function for calculating median
 	public static double findMedian(Vector<Integer> vector) {
 		Collections.sort(vector);
 		int m = vector.size();
