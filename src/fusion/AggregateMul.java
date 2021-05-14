@@ -1,6 +1,7 @@
 package fusion;
 
 import java.util.Vector;
+//aggregation function multiplication
 public class AggregateMul extends Aggregate_Function{
     @Override
     public Vector<Float> choosenAggregate(Models mod) {
