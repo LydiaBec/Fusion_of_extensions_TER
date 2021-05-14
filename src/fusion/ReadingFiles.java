@@ -43,7 +43,7 @@ public abstract class ReadingFiles {
 		argument.clear();
 		atts.clear();
 		String file_arguments = new String();// tableau pour stocker les argument du fichier
-		String link = new String(af_file);// chemin vers le fichier à lire
+		String link = new String(af_file);// chemin vers le fichier Ã  lire
 		String[] splited = new String[2];
 		Boolean attaque = false;
 		BufferedReader reader;
@@ -108,7 +108,6 @@ public abstract class ReadingFiles {
 			BufferedReader br = new BufferedReader(fr);
 			while ((line = br.readLine()) != null) {
 				if (line.contains("p cnf")) {
-					// line = line.replace("java", " ");
 					nb_clause = Integer.parseInt(line.substring(line.indexOf(' ', 6)+1));
                     nb_clause++;
                     line = line.substring(0, line.indexOf(' ', 6)+1);
@@ -147,15 +146,12 @@ public abstract class ReadingFiles {
 			while (unSat == 0) {
 				IProblem problem = reader.parseInstance(cnf_use_file);
 				if (problem.isSatisfiable()) {
-				//	System.out.println("Satisfiable !");
 					int[] solution = problem.findModel();
-					//System.out.println("Un modele : " + Arrays.toString(solution));
 					modeles.add(solution);
 					reader.decode(problem.model(), out);
 					String clause = format_cnf(solution);
 					addClause(clause, cnf_use_file);
 				} else {
-					//System.out.println("Unsatisfiable !");
 					unSat = 1;
 				}
 			}
@@ -205,7 +201,7 @@ public abstract class ReadingFiles {
 		for (File item : liste) {
 			if (item.isFile()) {
 				readingAF(argument, atts, item.getAbsolutePath());
-				// Cr�ation de l'af
+				// Création de l'af
 				DungAF af = new DungAF(argument, atts);
 				// ajout de l'af a l'ensemble des afs
 				afs.add(af);
