@@ -13,7 +13,7 @@ public class CalculDistance {
 		Object min = null;
 		Vector<Integer> vec_distance = new Vector<>();
 		Vector<Integer> Min_distance = new Vector<Integer>();
-		// parourir les modèles
+		// browse the models
 		for (Collection<String> current_mod : mod.getModels()) {
 			
 			HashSet<HashSet<String>> ext = null;
@@ -32,18 +32,14 @@ public class CalculDistance {
 				ext = af.getPreferredExts();
 				break;
 			}
-			//System.out.println("MODELE " + i_mod + " : " + current_mod);
-			//System.out.println("EXTENSION " + ext);
+		
 			for (Collection<String> current_ext : ext) {
-			//	System.out.println("Distance Avec Extension " + current_ext);
 				dist = distance.choosenDistance(current_ext, current_mod);
-			//	System.out.println(" = " + dist);
-				// vecteur pour trouver le minimum des distance d'un modèle
+				// vector to find the minimum distance of a model
 				Min_distance.addElement(dist);
 				min = Collections.min(Min_distance);
 			}
 			vec_distance.addElement((Integer) min);
-		//	System.out.println("Distance minimum du modèle  : " + min);
 			Min_distance.clear();
 		}
 		mod.setDistance(vec_distance);
