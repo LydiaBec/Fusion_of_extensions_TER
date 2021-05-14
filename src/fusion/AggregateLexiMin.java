@@ -28,7 +28,6 @@ public class AggregateLexiMin extends Aggregate_Function {
 		for (int j = 0; j < vTrans.size(); j++) {
 			Collections.sort(vTrans.get(j));
 		}
-		//System.out.println(vTrans);
 		lex2.addAll(vTrans);
 		for (int i = 0; i < vTrans.size(); i++) {
 			lex2 = cmpareVec(vTrans.get(i), lex2);
@@ -40,7 +39,6 @@ public class AggregateLexiMin extends Aggregate_Function {
 				}
 			}
 		}
-		//System.out.println("Vectror selected: " + lex2);
 		return lex;
 	}
 }
