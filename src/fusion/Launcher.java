@@ -14,7 +14,7 @@ import net.sf.jargsemsat.jargsemsat.datastructures.*;
 public class Launcher {
 	static Vector<Float> resultat = new Vector<>();
 	static Collection<Collection<String>> vec_candidats = new Vector<>();
-
+	static boolean addMod = true;
 	public static void main(String args[]) throws IOException {
 
 		List<String> args_d = null;
@@ -95,62 +95,74 @@ public class Launcher {
 		Vector<String> fileName = ReadingFiles.nameFile(args_d.get(0));
 			boolean supported = true;
 			int j = 0;
-		
-			if(mod.getModels().isEmpty()) { // Si il n'y a pas de modele ou pas de modele.
-			for (DungAF af : ReadingFiles.Lectures(args_d.get(0))) {
-				if(addMod){
-                    			 model = toCollec(af.getArguments());
-                   			 mod = new Models(model);
-                   			 addMod = false;
-               				 } 
-               		 mainFunc(fileName, af, mod, sem, distance, supported, j);
-               		 j++;
-            		}
-            		mainAgregate(mod, as, supported);
-			}else { // si il y a un modele
-				 for (DungAF af : ReadingFiles.Lectures(args_d.get(0))) {
+		//if there is no constraint file
+			if(mod.getModels().isEmpty()) {
+			System.out.println("pas de modeles!");
+            for (DungAF af : ReadingFiles.Lectures(args_d.get(0))) {
+                if(addMod){
+                     model = toCollec(af.getArguments());
+                     mod = new Models(model);
+                    addMod = false;
+                } 
+                mainFunc(fileName, af, mod, sem, distance, supported, j);
+                j++;
+            }
+            mainAgregate(mod, as, supported);
+            	
+			}else {
+				//if there is a constraint file
+		  System.out.println("il y a des modeles!");
+            for (DungAF af : ReadingFiles.Lectures(args_d.get(0))) {
                 mainFunc(fileName, af, mod, sem, distance, supported, j);
                 j++;
             }
             mainAgregate(mod, as, supported);
         }
+		long tempsFin = System.nanoTime(); 
+		double seconds = (tempsFin - tempsDebut) / 1e9; 
+		System.out.println();
+		System.out.println("Pour "+ args_d.get(0)+" Arguments Opération effectuée en: "+ seconds + " secondes.");
     }
-		    public static void mainFunc(Vector<String> fileName, DungAF af, Models mod, String sem, Distance distance, boolean supported, int j){
-				if (fileName.get(j).toString().endsWith("co")) {
-					sem = "CO";
-				} else {
-					if (fileName.get(j).toString().endsWith("gr")) {
-						sem = "GR";
-					} else {
-						if (fileName.get(j).toString().endsWith("st")) {
-							sem = "ST";
-						} else {
-							if (fileName.get(j).toString().endsWith("pr")) {
-								sem = "PR";
-
-							} else {
-								if (fileName.get(j).toString().endsWith("txt")
-										|| fileName.get(j).toString().endsWith("tgf")) {
-									sem = "CO";
-								} else {
-									System.err.println("file extension not supported : " + fileName.get(j).toString()
-											+ "\nsupported extentions: .co for complet, .pr for preferred, gr for grounded, st for stable ");
-									supported = false;
-									break;
-								}
-
-							}
-
-						}
-					}
-				}
+	public static Collection<Collection<String>> toCollec(Collection<String> defaultModel){
+        Collection<Collection<String>> returnStat = new HashSet<Collection<String>>();
+        returnStat.add(defaultModel);
+        return returnStat;
+    }
+    
+		   public static void mainFunc(Vector<String> fileName, DungAF af, Models mod, String sem, Distance distance, boolean supported, int j){
+        System.out.format("****************  " + fileName.get(j) + "  *************** \n");
+                if (fileName.get(j).toString().endsWith("co")) {
+                    sem = "CO";
+                } else {
+                    if (fileName.get(j).toString().endsWith("gr")) {
+                        sem = "GR";
+                    } else {
+                        if (fileName.get(j).toString().endsWith("st")) {
+                            sem = "ST";
+                        } else {
+                            if (fileName.get(j).toString().endsWith("pr")) {
+                                sem = "PR";
+                            }else {
+                                if (fileName.get(j).toString().endsWith("txt") || fileName.get(j).toString().endsWith("tgf")) {
+                                    sem = "CO";
+                                } else {
+                                    System.err.println("file extension not supported : " + fileName.get(j).toString()
+                                                + "\nsupported extentions: .co for complet, .pr for preferred, gr for grounded, st for stable ");
+                                    supported = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
 
 				// calculating distance
 				CalculDistance.calculDistance(af, mod, distance, sem);
 			}
-		    public static void mainAgregate(Models mod, Aggregate_Function as, boolean supported){
+	    public static void mainAgregate(Models mod, Aggregate_Function as, boolean supported){
 
-			if (supported) {
+		    		if (supported) {
+				//System.out.println("Vecteur de toute les distances " + mod.getDistance());
 				resultat = as.choosenAggregate(mod);
 				System.out.println("Distance final apres aggregation = " + resultat);
 				vec_candidats = mod.getCondidats(resultat);
@@ -160,13 +172,9 @@ public class Launcher {
 				System.err.println("Interruped process file extension not supported ");
 
 			}
-
-		}
-	}
-		long tempsFin = System.nanoTime(); 
-		double seconds = (tempsFin - tempsDebut) / 1e9; 
-		System.out.println();
-		System.out.println("Pour "+ args_d.get(0)+" Arguments Opération effectuée en: "+ seconds + " secondes.");
+}
+		
+		
 	}
 	
 }
