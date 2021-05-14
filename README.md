@@ -1,8 +1,11 @@
 Ce travail a été réalisé par Akroun Yanis-Fady et Bechroune Lydia
+
 De l'Université de Paris
+
 encadré par Jean-Guy Mailly et Jérôme Delobelle.
 
 Pour la fusion de systèmes d'argumentation basée sur les extensions.
+
 
 Le dossier comporte:
 -Les différentes classes de notre projet, la classe "Luncher" étant la classe main.
