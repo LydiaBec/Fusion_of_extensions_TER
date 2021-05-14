@@ -1,10 +1,9 @@
 package fusion;
-
 import java.util.Collection;
 
 public class DistanceHamming extends Distance {
 
-    // function to calculate Hamming distance
+    // Function to calculate the hamming distance 
     public int choosenDistance(Collection<String> Ext, Collection<String> Mod) {
         int difference = 0;
         for (String i : Ext) {
