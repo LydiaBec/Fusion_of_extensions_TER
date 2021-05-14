@@ -27,7 +27,7 @@ public class Launcher {
 					"\taggregation_function: SUM for sum, MIN for Minimum, MAX for Maximum, MUL for Multiplication, MEAN for mean,"
 							+ " MED for Mediane, LMIN for LexiMin, LMAX for LexiMax.");
 			System.out.println(
-					"The default parameters used are : <af_path> = Afs, <constrain_path> = Sat.txt, <distance> = HM, <aggregation_function> = SUM ");
+					"The default parameters used are : <af_path> = Afs, <constrain_path> = constraint.txt, <distance> = HM, <aggregation_function> = SUM ");
 			args_d = Arrays.asList("Afs", "Sat.txt", "HM", "SUM");
 		} else
 			args_d = Arrays.asList(args);
