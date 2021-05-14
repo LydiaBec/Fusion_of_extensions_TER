@@ -1,7 +1,7 @@
 package fusion;
 
 import java.util.Vector;
-
+// Minimum aggregation function
 public class AggregateMin extends Aggregate_Function {
 	@Override
 	public Vector<Float> choosenAggregate(Models mod) {
