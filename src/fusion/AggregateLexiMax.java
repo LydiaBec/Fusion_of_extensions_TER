@@ -2,7 +2,7 @@ package fusion;
 
 import java.util.Collections;
 import java.util.Vector;
-
+//LexiMax aggregation function
 public class AggregateLexiMax extends Aggregate_Function {
 	
 	public static Vector<Vector<Integer>> cmpareVec(Vector<Integer> vec1, Vector<Vector<Integer>> vec2) {
