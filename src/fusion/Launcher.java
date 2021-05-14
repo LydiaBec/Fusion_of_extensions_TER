@@ -95,13 +95,11 @@ public class Launcher {
 
 		} else {
 			String sem = new String();
-			// calcul de la distance
 			Vector<String> fileName = ReadingFiles.nameFile(args_d.get(0));
 			boolean supported = true;
 			int j = 0;
 			for (DungAF af : ReadingFiles.Lectures(args_d.get(0))) {
 
-				//System.out.format("****************  " + fileName.get(j) + "  *************** \n");
 				if (fileName.get(j).toString().endsWith("co")) {
 					sem = "CO";
 				} else {
@@ -133,7 +131,6 @@ public class Launcher {
 
 				// calcul de la distance
 				CalculDistance.calculDistance(af, mod, distance, sem);
-				//System.out.format("********************************************* \n");
 				j++;
 			}
 			if (supported) {
