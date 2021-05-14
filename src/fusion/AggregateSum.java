@@ -1,7 +1,7 @@
 package fusion;
 
 import java.util.Vector;
-// LexiMin aggregation function 
+// Sum aggregation function 
 public class AggregateSum extends Aggregate_Function{
     @Override
     public Vector<Float> choosenAggregate(Models mod) {
