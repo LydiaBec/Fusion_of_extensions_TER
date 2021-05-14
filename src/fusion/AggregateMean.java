@@ -1,7 +1,7 @@
 package fusion;
 
 import java.util.Vector;
-
+//Mean aggregation function
 public class AggregateMean extends Aggregate_Function {
 
 	@Override
