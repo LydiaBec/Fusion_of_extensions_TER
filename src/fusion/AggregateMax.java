@@ -1,7 +1,7 @@
 package fusion;
 
 import java.util.Vector;
-
+//Maximum aggregation function
 public class AggregateMax extends Aggregate_Function {
 	@Override
 	public Vector<Float> choosenAggregate(Models mod) {
