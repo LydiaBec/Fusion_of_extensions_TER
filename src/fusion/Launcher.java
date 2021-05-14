@@ -84,7 +84,7 @@ public class Launcher {
 			System.err.println("Error Agregation function \"" + args_d.get(3) + "\" not handled");
 			return;
 		}
-		//Calcul temps d'execussion
+		//Calculation of execution time
 		long tempsDebut = System.nanoTime(); 
 		// Reading model
 		Collection<Collection<String>> model = ReadingFiles
@@ -129,12 +129,11 @@ public class Launcher {
 					}
 				}
 
-				// calcul de la distance
+				// calculating distance
 				CalculDistance.calculDistance(af, mod, distance, sem);
 				j++;
 			}
 			if (supported) {
-			//	System.out.println("Vecteur de toute les distances " + mod.getDistance());
 				resultat = as.choosenAggregate(mod);
 				System.out.println("Distance final apres aggregation = " + resultat);
 				vec_candidats = mod.getCondidats(resultat);
